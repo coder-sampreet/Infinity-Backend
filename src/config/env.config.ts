@@ -24,10 +24,12 @@ export const envSchema = z.object({
     PORT: z.coerce.number().int().positive().default(3000),
     LOG_LEVEL: z.string().default("info"),
 
-    ACCESS_TOKEN_SECRET: z.string().min(1, "ACCESS_TOKEN_SECRET is required"),
+    ACCESS_TOKEN_SECRET: z.string().min(64, "ACCESS_TOKEN_SECRET is required"),
     ACCESS_TOKEN_EXPIRY: z.string().default("60m"),
 
-    REFRESH_TOKEN_SECRET: z.string().min(1, "REFRESH_TOKEN_SECRET is required"),
+    REFRESH_TOKEN_SECRET: z
+        .string()
+        .min(64, "REFRESH_TOKEN_SECRET is required"),
     REFRESH_TOKEN_EXPIRY: z.string().default("7d"),
 
     MONGODB_URI: z.string().min(1, "MONGODB_URI is required"),
