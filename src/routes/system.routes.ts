@@ -6,25 +6,6 @@ import APIResponse from "../core/APIResponse.js";
 const router = express.Router();
 
 /** Health check (liveness probe) */
-/**
- * @openapi
- * /health:
- *   get:
- *     summary: Liveness probe
- *     tags: [System]
- *     responses:
- *       200:
- *         description: Service is healthy
- *         content:
- *           application/json:
- *             schema:
- *               allOf:
- *                 - $ref: '#/components/schemas/ApiSuccess'
- *                 - type: object
- *                   properties:
- *                     data:
- *                       $ref: '#/components/schemas/HealthData'
- */
 router.get("/health", (req: Request, res: Response) => {
     const uptime = process.uptime();
     return APIResponse.ok(
@@ -38,25 +19,6 @@ router.get("/health", (req: Request, res: Response) => {
 });
 
 /** Info (version/build metadata) */
-/**
- * @openapi
- * /info:
- *   get:
- *     summary: Service metadata
- *     tags: [System]
- *     responses:
- *       200:
- *         description: App info
- *         content:
- *           application/json:
- *             schema:
- *               allOf:
- *                 - $ref: '#/components/schemas/ApiSuccess'
- *                 - type: object
- *                   properties:
- *                     data:
- *                       $ref: '#/components/schemas/InfoData'
- */
 router.get("/info", (req: Request, res: Response) => {
     return APIResponse.ok(res, {
         name: "infinity-backend",
