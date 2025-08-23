@@ -1,0 +1,72 @@
+{
+    "name": "infinity-backend",
+    "version": "1.0.0",
+    "private": true,
+    "description": "Infinity.ai API",
+    "license": "ISC",
+    "author": "Sampreet Mandal",
+    "type": "module",
+    "main": "dist/server.js",
+    "directories": {
+        "test": "tests"
+    },
+    "engines": {
+        "node": ">=22"
+    },
+    "scripts": {
+        "dev": "cross-env NODE_ENV=development nodemon --watch src --ext ts --exec tsx src/server.ts",
+        "build": "tsc -p tsconfig.build.json",
+        "start": "cross-env NODE_ENV=production node dist/server.js",
+        "clean": "rm -rf dist",
+        "type-check": "tsc -p tsconfig.build.json --noEmit && tsc -p tsconfig.test.json --noEmit",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "format": "prettier . --write",
+        "format:check": "prettier . --check",
+        "test": "jest --config=jest.config.mjs",
+        "test:unit": "jest --config=jest.config.mjs --testPathPatterns tests/unit --passWithNoTests",
+        "test:integration": "jest --config=jest.config.mjs --testPathPatterns tests/integration --passWithNoTests",
+        "test:e2e": "jest --config=jest.config.mjs --testPathPatterns tests/e2e --passWithNoTests",
+        "test:watch": "jest --config=jest.config.mjs --watch",
+        "test:cov": "jest --config=jest.config.mjs --coverage"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.34.0",
+        "@jest/globals": "^30.0.5",
+        "@swc/core": "^1.13.4",
+        "@swc/jest": "^0.2.39",
+        "@types/cookie-parser": "^1.4.9",
+        "@types/cors": "^2.8.19",
+        "@types/express": "^5.0.3",
+        "@types/helmet": "^0.0.48",
+        "@types/jest": "^30.0.0",
+        "@types/morgan": "^1.9.10",
+        "@types/node": "^24.3.0",
+        "@types/supertest": "^6.0.3",
+        "cross-env": "^10.0.0",
+        "eslint": "^9.34.0",
+        "eslint-config-prettier": "^10.1.8",
+        "globals": "^16.3.0",
+        "jest": "^30.0.5",
+        "nodemon": "^3.1.10",
+        "prettier": "^3.6.2",
+        "supertest": "^7.1.4",
+        "tsx": "^4.20.4",
+        "typescript": "^5.9.2",
+        "typescript-eslint": "^8.40.0"
+    },
+    "dependencies": {
+        "@types/mongoose": "^5.11.96",
+        "cookie-parser": "^1.4.7",
+        "cors": "^2.8.5",
+        "dotenv": "^17.2.1",
+        "express": "^5.1.0",
+        "express-rate-limit": "^8.0.1",
+        "helmet": "^8.1.0",
+        "mongoose": "^8.18.0",
+        "morgan": "^1.10.1",
+        "winston": "^3.17.0",
+        "winston-daily-rotate-file": "^5.0.0",
+        "zod": "^4.1.0"
+    }
+}

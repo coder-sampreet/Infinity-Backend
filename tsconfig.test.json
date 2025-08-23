@@ -1,0 +1,11 @@
+{
+    "extends": "./tsconfig.base.json",
+    "compilerOptions": {
+        "noEmit": true,
+        "strict": false, // disable strict mode in tests
+        "allowImportingTsExtensions": true, // ✅ allow .ts extension imports
+        "skipLibCheck": true
+    },
+    "include": ["tests/**/*.ts"],
+    "exclude": ["node_modules", "dist", "public"]
+}

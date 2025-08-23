@@ -1,0 +1,14 @@
+//errorCodes.const.ts
+const ERROR_CODES = {
+    BAD_REQUEST: "BAD_REQUEST",
+    UNAUTHORIZED: "UNAUTHORIZED",
+    NOT_FOUND: "NOT_FOUND",
+    INTERNAL_ERROR: "INTERNAL_ERROR",
+    VALIDATION_ERROR: "VALIDATION_ERROR",
+    FORBIDDEN: "FORBIDDEN",
+    CONFLICT: "CONFLICT",
+    UNEXPECTED_ERROR: "UNEXPECTED_ERROR",
+} as const;
+
+export type ErrorCode = (typeof ERROR_CODES)[keyof typeof ERROR_CODES];
+export default ERROR_CODES;

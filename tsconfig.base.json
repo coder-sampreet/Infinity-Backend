@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "removeComments": true,
+
+        // Environment
+        "target": "esnext",
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
+        "lib": ["esnext"],
+        "types": ["node", "jest"],
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+
+        // Output
+        "sourceMap": true,
+        "skipLibCheck": true,
+        "isolatedModules": true,
+        "verbatimModuleSyntax": true,
+        "noUncheckedSideEffectImports": true,
+        "moduleDetection": "force",
+        "noEmitOnError": true
+    }
+}

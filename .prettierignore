@@ -1,0 +1,58 @@
+# Ignore artifacts:
+build
+dist
+
+logs
+node_modules
+
+coverage
+
+.env
+.env.development
+.env.production
+.env.test
+
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+public
+
+
+# Node modules
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Logs
+logs/
+
+# Public assets
+public/
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Git + Editor configs
+.gitignore
+.prettierignore
+.prettierrc
+eslint.config.json
+
+# Environment files
+.env
+.env.*
+*.env.*
+
+# System / IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Jest cache & temp files
+jest-cache/
+.cache/
