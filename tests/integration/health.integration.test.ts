@@ -1,4 +1,4 @@
-// tests/unit/health.test.ts
+// health.integration.test.ts
 import request from "supertest";
 import app from "../../src/app.ts";
 
