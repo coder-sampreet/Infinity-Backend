@@ -5,7 +5,7 @@ import globalRateLimiter, {
     authRateLimiter,
 } from "../../src/middlewares/rateLimiter.middleware.js";
 import HTTP_STATUS_CODES from "../../src/constants/httpStatusCodes.const.js";
-
+import { isIP } from "node:net";
 // Create a test Express app
 const createTestApp = (rateLimiter: express.RequestHandler) => {
     const app = express();
@@ -28,6 +28,32 @@ const createTestApp = (rateLimiter: express.RequestHandler) => {
     return app;
 };
 
+// ✅ helper to safely resolve a client IP for tests
+interface WithOptionalConnection {
+    connection?: { remoteAddress?: string };
+}
+const getClientIp = (req: express.Request) => {
+    const xf = (req.headers["x-forwarded-for"] as string) || "";
+    const fromHeader = xf.split(",")[0]?.trim();
+
+    // Prefer Express' computed IP, then XFF, then socket
+    let candidate =
+        req.ip ||
+        fromHeader ||
+        req.socket?.remoteAddress ||
+        (req as unknown as WithOptionalConnection).connection?.remoteAddress ||
+        "";
+
+    // Normalize IPv6 IPv4-mapped addresses like ::ffff:127.0.0.1
+    if (candidate.startsWith("::ffff:")) candidate = candidate.slice(7);
+
+    // Treat explicit bad values or unknowns as invalid
+    if (!candidate || candidate === "invalid-ip" || isIP(candidate) === 0) {
+        return "127.0.0.1";
+    }
+    return candidate;
+};
+
 // Create a fresh rate limiter for testing
 type RateLimitOptions = Parameters<typeof rateLimit>[0];
 const createFreshRateLimiter = (options: RateLimitOptions = {}) => {
@@ -43,6 +69,7 @@ const createFreshRateLimiter = (options: RateLimitOptions = {}) => {
         },
         statusCode: HTTP_STATUS_CODES.TOO_MANY_REQUESTS || 429,
         ...options,
+        keyGenerator: (req) => getClientIp(req as express.Request),
     });
 };
 
