@@ -23,12 +23,12 @@
         "lint:fix": "eslint . --fix",
         "format": "prettier . --write",
         "format:check": "prettier . --check",
-        "test": "jest --config=jest.config.mjs",
-        "test:unit": "jest --config=jest.config.mjs --testPathPatterns tests/unit --passWithNoTests",
-        "test:integration": "jest --config=jest.config.mjs --testPathPatterns tests/integration --passWithNoTests",
-        "test:e2e": "jest --config=jest.config.mjs --testPathPatterns tests/e2e --passWithNoTests",
-        "test:watch": "jest --config=jest.config.mjs --watch",
-        "test:cov": "jest --config=jest.config.mjs --coverage"
+        "test": "cross-env NODE_ENV=test jest --config=jest.config.mjs",
+        "test:unit": "cross-env NODE_ENV=test jest --config=jest.config.mjs --testPathPatterns tests/unit --passWithNoTests",
+        "test:integration": "cross-env NODE_ENV=test jest --config=jest.config.mjs --testPathPatterns tests/integration --passWithNoTests",
+        "test:e2e": "cross-env NODE_ENV=test jest --config=jest.config.mjs --testPathPatterns tests/e2e --passWithNoTests",
+        "test:watch": "cross-env NODE_ENV=test jest --config=jest.config.mjs --watch",
+        "test:cov": "cross-env NODE_ENV=test jest --config=jest.config.mjs --coverage"
     },
     "devDependencies": {
         "@eslint/js": "^9.34.0",

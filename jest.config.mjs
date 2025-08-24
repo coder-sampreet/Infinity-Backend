@@ -31,8 +31,7 @@ const config = {
         // "^@/(.*)$": "<rootDir>/src/$1",
     },
 
-    // Load test env vars *before* importing app
-    setupFiles: ["<rootDir>/tests/setupEnv.ts"],
+    // No setup files needed - NODE_ENV is set in package.json scripts
 };
 
 export default config;
